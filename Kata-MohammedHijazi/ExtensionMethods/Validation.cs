@@ -6,6 +6,7 @@ public static class Validation
 {
    public static bool InRange(this decimal value, decimal lower, decimal upper) => value >=lower && value <= upper;
    public static bool IsPossitve(this decimal value) => value >= 0;
+   public static bool IsLargerThan(this decimal value, decimal min) => value > min; 
    public static decimal SetPrecision(this decimal value) => Decimal.Round(value, 2);
 
    public static decimal ValidatePrice(this decimal price)
@@ -13,5 +14,13 @@ public static class Validation
       if (price.InRange(0, 100) == false)
          throw new ArgumentException("The Price Isn't In Correct Range (0-100)");
       return price.SetPrecision(); 
+   }
+   public static decimal ValidateTax(this decimal tax)
+   {
+      if (tax.IsPossitve() == false)
+         throw new ArgumentException("The Tax Must be Positive");
+      if (tax.IsLargerThan(1))
+         tax /= 100;
+      return tax.SetPrecision(); 
    }
 }

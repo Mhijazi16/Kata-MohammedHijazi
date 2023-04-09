@@ -1,9 +1,13 @@
 ﻿
+using System.Net.NetworkInformation;
+using Kata_MohammedHijazi;
+
 public class Program
 {
     public static void Main()
     {
-        Console.WriteLine("helhlehl");
-        int x = 1; 
+        Product p1 = new Product("AA",123,12.12324234m,2199); 
+        p1.PrintInfo();
+        
     }
 }

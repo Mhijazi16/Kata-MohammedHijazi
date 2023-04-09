@@ -4,27 +4,41 @@ namespace Kata_MohammedHijazi;
 
 public class Customer
 {
+    #region Fields
+
     public string Name { get; set; } 
-    public List<Product> Products { get; set; }
-    private decimal tax = 0.20m;
-    public decimal Tax
-    {
-        get => tax;
-        set => tax.ValidateTax(); 
-    }
+        public List<Product> Products { get; set; }
+        private decimal tax = 0.20m;
+        public decimal Tax
+        {
+            get => tax;
+            set => tax.ValidateTax(); 
+        }
 
-    public Customer()
-    {
-        Name = "Unkown-Customer";
-        Tax = 0.20m;
-        Products = new List<Product>();
-    }
 
-    public Customer(decimal tax, string name, List<Product> products)
+    #endregion
+    
+    #region Constructors
+
+     public Customer()
+     {
+         Name = "Unkown-Customer";
+         Tax = 0.20m;
+         Products = new List<Product>();
+     }
+     public Customer(decimal tax, string name, List<Product> products)
+     {
+         this.tax = tax;
+         Name = name;
+         Products = products;
+         Products.ApplyTaxToList(tax);
+     }
+
+    #endregion
+
+    public void PrintProducts()
     {
-        this.tax = tax;
-        Name = name;
-        Products = products;
-        Products.ApplyTaxToList(tax);
-    }
+        foreach(Product item in Products)
+            item.PrintInfo();
+    } 
 }

@@ -1,0 +1,15 @@
+/home/subliminal/Documents/C-Sharp/Kata-MohammedHijazi/Kata-MohammedHijazi/bin/Debug/net7.0/Kata-MohammedHijazi
+/home/subliminal/Documents/C-Sharp/Kata-MohammedHijazi/Kata-MohammedHijazi/bin/Debug/net7.0/Kata-MohammedHijazi.deps.json
+/home/subliminal/Documents/C-Sharp/Kata-MohammedHijazi/Kata-MohammedHijazi/bin/Debug/net7.0/Kata-MohammedHijazi.runtimeconfig.json
+/home/subliminal/Documents/C-Sharp/Kata-MohammedHijazi/Kata-MohammedHijazi/bin/Debug/net7.0/Kata-MohammedHijazi.dll
+/home/subliminal/Documents/C-Sharp/Kata-MohammedHijazi/Kata-MohammedHijazi/bin/Debug/net7.0/Kata-MohammedHijazi.pdb
+/home/subliminal/Documents/C-Sharp/Kata-MohammedHijazi/Kata-MohammedHijazi/obj/Debug/net7.0/Kata-MohammedHijazi.csproj.AssemblyReference.cache
+/home/subliminal/Documents/C-Sharp/Kata-MohammedHijazi/Kata-MohammedHijazi/obj/Debug/net7.0/Kata-MohammedHijazi.GeneratedMSBuildEditorConfig.editorconfig
+/home/subliminal/Documents/C-Sharp/Kata-MohammedHijazi/Kata-MohammedHijazi/obj/Debug/net7.0/Kata-MohammedHijazi.AssemblyInfoInputs.cache
+/home/subliminal/Documents/C-Sharp/Kata-MohammedHijazi/Kata-MohammedHijazi/obj/Debug/net7.0/Kata-MohammedHijazi.AssemblyInfo.cs
+/home/subliminal/Documents/C-Sharp/Kata-MohammedHijazi/Kata-MohammedHijazi/obj/Debug/net7.0/Kata-MohammedHijazi.csproj.CoreCompileInputs.cache
+/home/subliminal/Documents/C-Sharp/Kata-MohammedHijazi/Kata-MohammedHijazi/obj/Debug/net7.0/Kata-MohammedHijazi.dll
+/home/subliminal/Documents/C-Sharp/Kata-MohammedHijazi/Kata-MohammedHijazi/obj/Debug/net7.0/refint/Kata-MohammedHijazi.dll
+/home/subliminal/Documents/C-Sharp/Kata-MohammedHijazi/Kata-MohammedHijazi/obj/Debug/net7.0/Kata-MohammedHijazi.pdb
+/home/subliminal/Documents/C-Sharp/Kata-MohammedHijazi/Kata-MohammedHijazi/obj/Debug/net7.0/Kata-MohammedHijazi.genruntimeconfig.cache
+/home/subliminal/Documents/C-Sharp/Kata-MohammedHijazi/Kata-MohammedHijazi/obj/Debug/net7.0/ref/Kata-MohammedHijazi.dll

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "PHCm4UxjnZwSRkonoEQOcWtVP9BvUdyN53EFv9sTsiEz8iaxhsE2KpuMGY2CYWJ1dNllsvEiwqj8cYyulB/0Eg==",
+  "success": true,
+  "projectFilePath": "/home/subliminal/Documents/C-Sharp/Kata-MohammedHijazi/Kata-MohammedHijazi/Kata-MohammedHijazi.csproj",
+  "expectedPackageFiles": [
+    "/home/subliminal/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.3/microsoft.aspnetcore.app.ref.7.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

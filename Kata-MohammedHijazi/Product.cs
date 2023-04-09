@@ -13,9 +13,10 @@ public class Product
      
      #endregion
      #region Getter&Setter
-     
+     public void setPrices(Dictionary<PriceState, decimal> table) => Prices = table;
+     public Dictionary<PriceState, decimal> getPrices() => Prices; 
      public decimal Price(PriceState state) => Prices[state];
-     public void Price(PriceState state, decimal price) => Prices[state] = price.ValidatePrice();  
+     public void Price(PriceState state, decimal price) => this.Prices[state] = price.ValidatePrice();  
      public decimal Tax
                   {
                       get => tax;
@@ -34,12 +35,13 @@ public class Product
           this.ApplyTax(Tax);
           this.ComputeNetPrice();
      }
-     public Product(string name, int upc,decimal tax, Dictionary<PriceState, decimal> prices)
+     public Product(string name, int upc,decimal tax, decimal price)
      {
           Name = name;
           UPC = upc;
-          Prices = prices;
-          this.Tax = tax; 
+          Prices = new Dictionary<PriceState, decimal>(); 
+          this.Tax = tax;
+          Price(PriceState.Normal, price); 
           this.ApplyTax(tax);
           this.ComputeNetPrice();
      }

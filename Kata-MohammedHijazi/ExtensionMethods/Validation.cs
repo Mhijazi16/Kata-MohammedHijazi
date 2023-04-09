@@ -11,8 +11,8 @@ public static class Validation
 
    public static decimal ValidatePrice(this decimal price)
    {
-      if (price.InRange(0, 100) == false)
-         throw new ArgumentException("The Price Isn't In Correct Range (0-100)");
+      if (price.IsPossitve() == false)
+         throw new ArgumentException("The Price Must Be Positive!!");
       return price.SetPrecision(); 
    }
    public static decimal ValidateTax(this decimal tax)

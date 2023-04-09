@@ -10,6 +10,7 @@ public class Product
      public int UPC { get; set; }
      private Dictionary<PriceState, decimal> Prices { get; set; }
      private decimal tax = 0.20m;
+     private decimal discount; 
      
      #endregion
      #region Getter&Setter
@@ -22,6 +23,12 @@ public class Product
                       get => tax;
                       set => tax.ValidateTax(); 
                   }
+
+     public decimal Discount
+     {
+          get => discount;
+          set => discount.ValidateTax(); 
+     }
      #endregion
      #region Constructors
      

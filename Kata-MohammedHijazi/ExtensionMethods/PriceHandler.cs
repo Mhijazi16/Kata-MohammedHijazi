@@ -1,23 +1,50 @@
+using System.Runtime.CompilerServices;
+
 namespace Kata_MohammedHijazi.ExtensionMethods;
 
 public static class PriceHandler
 {
-   //For Computing The Taxed Price
-   public static decimal ComputeTaxAmount(this Product prod, decimal tax) => tax * prod.Price(PriceState.Normal);
-   public static void ApplyTax(this Product product, decimal tax)
-   {
-      decimal Taxed = product.ComputeTaxAmount(tax) + product.Price(PriceState.Normal);
-      product.Price(PriceState.Taxed, Taxed);
-   } 
-   public static void ApplyTaxToList(this List<Product> list, decimal tax)
-   {
-      foreach (var item in list)
-         item.ApplyTax(tax); 
-   }
-   //For Computing the Net Price
-   public static void ComputeNetPrice(this Product product)
-   {
-      decimal Taxed = product.Price(PriceState.Taxed);
-      product.Price(PriceState.Net, Taxed);
-   }
+   #region HandlingTax&Discount 
+
+    public static decimal ComputeAmount(this Product prod, decimal ratio) => ratio * prod.Price(PriceState.Normal);
+    private static void ApplyTransaction(this Product product, decimal ratio, PriceState state)
+    {
+       decimal price = product.ComputeAmount(ratio) + product.Price(state);
+       product.Price(state, price);
+    }
+    private static void ApplyAllTransactions(this Product product, decimal tax, decimal discount)
+    {
+       product.ApplyTransaction(tax,PriceState.Taxed);
+       product.ApplyTransaction(discount,PriceState.Discounted);
+       product.ComputeNetPrice();
+    }
+    
+   #endregion
+   #region NetPrice
+
+    public static void ComputeNetPrice(this Product product)
+    {
+       decimal Net = product.Price(PriceState.Taxed) - product.Price(PriceState.Discounted);
+       product.Price(PriceState.Net, Net);
+    }
+
+   #endregion
+   #region SettingUpPrices 
+
+   private static void InitializePrices(this Product prod, decimal price)
+    {
+       prod.Price(PriceState.Normal, price);
+       prod.Price(PriceState.Taxed, 0);
+       prod.Price(PriceState.Discounted, 0);
+       prod.Price(PriceState.Net, 0); 
+    }
+    //For Setting Up The Prices
+    public static void SetupPrices(this Product prod,decimal price, decimal tax, decimal discount )
+    {
+       prod.InitializePrices(price);
+       prod.ApplyAllTransactions(tax,discount); 
+    }
+
+   #endregion
+  
 }

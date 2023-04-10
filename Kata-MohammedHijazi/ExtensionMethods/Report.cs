@@ -17,4 +17,16 @@ public static class Report
               Console.WriteLine($"After Discount : {discounted}, Net: {net}"); 
               Console.WriteLine("==============================================");
          }
+
+         public static void ReportDiscount(this Product Prod)
+         {
+             string replace = Prod.Discount.isApplied ? Prod.Discount.Amount + "" : "No Discount is Applied"; 
+             
+             Console.WriteLine("===============================================");
+             Console.WriteLine($"Tax Amount: {Prod.Tax.Amount}, Discount Amount: {replace}");
+             Console.WriteLine($"Original Price: {Prod.Price(PriceState.Normal)}");
+             Console.WriteLine($"Final Net Price: {Prod.Price(PriceState.Net)}");
+             Console.WriteLine("===============================================");
+         }
+            
 }

@@ -30,7 +30,6 @@ public static class PriceHandler
 
    #endregion
    #region SettingUpPrices 
-
    private static void InitializePrices(this Product prod, decimal price)
     {
        prod.Price(PriceState.Normal, price);
@@ -38,7 +37,6 @@ public static class PriceHandler
        prod.Price(PriceState.Discounted, 0);
        prod.Price(PriceState.Net, 0); 
     }
-    //For Setting Up The Prices
     public static void SetupPrices(this Product prod,decimal price, decimal tax, decimal discount )
     {
        prod.InitializePrices(price);

@@ -6,8 +6,8 @@ public class Program
 {
     public static void Main()
     {
-        Product p1 = new Product("AA",123,12.12324234m,2199); 
+        // Product p1 = new Product("AA",1234,20,15,20.25m);
+        Product p1 = new Product();
         p1.PrintInfo();
-        
     }
 }

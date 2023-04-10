@@ -52,16 +52,5 @@ public class Product
      }
 
      #endregion
-     
-     #region GeneralMethods
-     public void PrintInfo()
-     {
-          Console.WriteLine("==============================================");
-          Console.WriteLine($"Name: {Info.Name} , UPC: {Info.UPC} , Price: {Prices[PriceState.Normal]}");
-          Console.WriteLine($"Tax Amount: {Tax.Amount}, Discount Amount: {Discount.Amount},");
-          Console.WriteLine($"Price Before Tax = {Prices[PriceState.Normal]}, After Tax : {Prices[PriceState.Taxed]}");
-          Console.WriteLine($"After Discount : {Prices[PriceState.Discounted]}, Net: {Prices[PriceState.Net]}"); 
-          Console.WriteLine("==============================================");
-     }
-     #endregion     
+       
 }

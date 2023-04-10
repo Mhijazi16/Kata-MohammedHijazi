@@ -7,8 +7,8 @@ public class Discount
     #region Fields
 
       private decimal ratio;
-      private decimal amount; 
-     
+      private decimal amount;
+      public bool isApplied { get; set; } 
     #endregion
 
     #region Getters&Setters
@@ -32,6 +32,7 @@ public class Discount
     {
         Ratio = ratio;
         Amount = price;
+        isApplied = ratio.isNotZero();
     } 
 
     #endregion

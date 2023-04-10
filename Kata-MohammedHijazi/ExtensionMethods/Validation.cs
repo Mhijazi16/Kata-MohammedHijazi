@@ -15,12 +15,12 @@ public static class Validation
          throw new ArgumentException("The Price Must Be Positive!!");
       return price.SetPrecision(); 
    }
-   public static decimal ValidateTax(this decimal tax)
+   public static decimal ValidateRatio(this decimal ratio)
    {
-      if (tax.IsPossitve() == false)
+      if (ratio.IsPossitve() == false)
          throw new ArgumentException("The Tax Must be Positive");
-      if (tax.IsLargerThan(1))
-         tax /= 100;
-      return tax.SetPrecision(); 
+      if (ratio.IsLargerThan(1))
+         ratio /= 100;
+      return ratio.SetPrecision(); 
    }
 }

@@ -1,23 +1,32 @@
+using System.Runtime.CompilerServices;
+using Kata_MohammedHijazi.Transactions;
+
 namespace Kata_MohammedHijazi.ExtensionMethods;
 
 public static class PriceHandler
 {
-   //For Computing The Taxed Price
-   public static decimal ComputeTaxAmount(this Product prod, decimal tax) => tax * prod.Price(PriceState.Normal);
-   public static void ApplyTax(this Product product, decimal tax)
-   {
-      decimal Taxed = product.ComputeTaxAmount(tax) + product.Price(PriceState.Normal);
-      product.Price(PriceState.Taxed, Taxed);
-   } 
-   public static void ApplyTaxToList(this List<Product> list, decimal tax)
-   {
-      foreach (var item in list)
-         item.ApplyTax(tax); 
-   }
-   //For Computing the Net Price
-   public static void ComputeNetPrice(this Product product)
-   {
-      decimal Taxed = product.Price(PriceState.Taxed);
-      product.Price(PriceState.Net, Taxed);
-   }
+
+   #region SettingUpPrices 
+   public static void InitializePrices(this Product prod, decimal price)
+    {
+       prod.Price(PriceState.Normal, price);
+       prod.Price(PriceState.Taxed, 0);
+       prod.Price(PriceState.Discounted, 0);
+       prod.Price(PriceState.Net, 0); 
+    }
+ 
+    public static void SetupPrices(this Product prod,decimal price)
+    {
+        decimal Taxed = prod.Tax.ApplyTax(price);
+        decimal Discounted = prod.Discount.ApplyDiscount(Taxed); 
+        
+        prod.Price(PriceState.Normal, price);
+        prod.Price(PriceState.Taxed, Taxed);
+        prod.Price(PriceState.Discounted, Discounted);
+        prod.Price(PriceState.Net, Discounted);
+
+    }
+
+   #endregion
+  
 }

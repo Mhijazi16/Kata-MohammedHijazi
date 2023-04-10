@@ -1,58 +1,66 @@
 using Kata_MohammedHijazi.ExtensionMethods;
+using Kata_MohammedHijazi.Transactions;
 
 namespace Kata_MohammedHijazi;
 
 public class Product
 {
      #region Fields
-     
-     public string Name { get; set; }
-     public int UPC { get; set; }
-     private Dictionary<PriceState, decimal> Prices { get; set; }
-     private decimal tax = 0.20m;
+
+     public ProductInfo Info { get; set; } 
+     public Tax Tax { get; set; }
+     public Discount Discount { get; set; }
+     private Dictionary<PriceState, decimal> Prices = new Dictionary<PriceState, decimal>();  
      
      #endregion
+     
      #region Getter&Setter
-     public void setPrices(Dictionary<PriceState, decimal> table) => Prices = table;
-     public Dictionary<PriceState, decimal> getPrices() => Prices; 
-     public decimal Price(PriceState state) => Prices[state];
-     public void Price(PriceState state, decimal price) => this.Prices[state] = price.ValidatePrice();  
-     public decimal Tax
-                  {
-                      get => tax;
-                      set => tax.ValidateTax(); 
-                  }
+     
+     public decimal Price(PriceState state) => Prices[state]; 
+     public void Price(PriceState state, decimal price) => Prices[state] = price.ValidatePrice();  
+    
      #endregion
+     
      #region Constructors
      
      public Product()
      {
-          Name = "Product-Unknown";
-          UPC = 0;
-          Tax = 0.20m;
-          Prices = new Dictionary<PriceState, decimal>(); 
-          Price(PriceState.Normal, 1);
-          this.ApplyTax(Tax);
-          this.ComputeNetPrice();
+          Info = new ProductInfo("Unkown-Product", -1);
+          Tax = new Tax(Price(PriceState.Normal));
+          Discount = new Discount(Price(PriceState.Normal),0);
+          this.SetupPrices(1);
      }
-     public Product(string name, int upc,decimal tax, decimal price)
+     public Product(ProductInfo info,decimal taxRatio,decimal discountRatio, decimal price)
      {
-          Name = name;
-          UPC = upc;
-          Prices = new Dictionary<PriceState, decimal>(); 
-          this.Tax = tax;
-          Price(PriceState.Normal, price); 
-          this.ApplyTax(tax);
-          this.ComputeNetPrice();
+          this.Info = info;
+          this.Tax = new Tax(taxRatio);
+          this.Discount = new Discount(price,discountRatio);
+          this.SetupPrices(price);
      }
-     
+     public Product(ProductInfo info,decimal discountRatio, decimal price)
+     {
+           this.Info = info;
+           this.Tax = new Tax(price,0.2m);
+           this.Discount = new Discount(price, discountRatio);
+           this.SetupPrices(price);
+     }
+     public Product(ProductInfo info, Tax tax, Discount discount)
+     {
+          Info = info;
+          Tax = tax;
+          Discount = discount;
+     }
+
      #endregion
+     
      #region GeneralMethods
      public void PrintInfo()
      {
           Console.WriteLine("==============================================");
-          Console.WriteLine($"Name: {Name} , UPC: {UPC} , Price: {Prices[PriceState.Normal]}");
-          Console.WriteLine($"Price Before Tax = {Prices[PriceState.Normal]}, and After Tax : {Prices[PriceState.Taxed]}");
+          Console.WriteLine($"Name: {Info.Name} , UPC: {Info.UPC} , Price: {Prices[PriceState.Normal]}");
+          Console.WriteLine($"Tax Amount: {Tax.Amount}, Discount Amount: {Discount.Amount},");
+          Console.WriteLine($"Price Before Tax = {Prices[PriceState.Normal]}, After Tax : {Prices[PriceState.Taxed]}");
+          Console.WriteLine($"After Discount : {Prices[PriceState.Discounted]}, Net: {Prices[PriceState.Net]}"); 
           Console.WriteLine("==============================================");
      }
      #endregion     

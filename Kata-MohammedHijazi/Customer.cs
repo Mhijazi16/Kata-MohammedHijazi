@@ -29,6 +29,6 @@ public class Customer
     public void PrintProducts()
     {
         foreach(Product item in Products)
-            item.PrintInfo();
+            item.ReportProductInfo();
     } 
 }

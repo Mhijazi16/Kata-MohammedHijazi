@@ -1,4 +1,6 @@
 
+using Kata_MohammedHijazi.ExtensionMethods;
+
 namespace Kata_MohammedHijazi;
 
 public static class Report
@@ -46,6 +48,18 @@ public static class Report
               Console.WriteLine($"Total Discount Amount: {product.Discount.Amount + product.Discount.selectiveDiscount.Amount}");
               Console.WriteLine("===============================================");
                       
+         }
+
+         public static void ReportExpenses(this Product product)
+         {
+             decimal packageCost = product.Info.Expenses.Packages * product.Price(PriceState.Normal);
+             
+             Console.WriteLine("===============================================");
+             Console.WriteLine($"Cost =${product.Price(PriceState.Normal)}, Tax =${product.Tax.Amount}, Discount =${product.Discount.Amount}");
+             Console.WriteLine($"Packaging =${packageCost.SetPrecision()}, Transport =${product.Info.Expenses.Tranport}");
+             Console.WriteLine($"Total Discount Amount: {product.Discount.Amount + product.Discount.selectiveDiscount.Amount}");
+             Console.WriteLine("===============================================");
+                            
          }
             
 }

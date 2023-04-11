@@ -23,7 +23,7 @@ public class Discount
       public decimal Amount
       {
           get => amount;
-          set => amount = ComputeAmount(value, Ratio);
+          set => amount = ComputeAmount(value, Ratio).SetPrecision();
       }
 
     #endregion

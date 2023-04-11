@@ -18,13 +18,14 @@ public static class PriceHandler
     public static void SetupPrices(this Product prod,decimal price)
     {
         decimal Taxed = prod.Tax.ApplyTax(price);
-        decimal Discounted = prod.Discount.ApplyDiscount(Taxed); 
-        
+        decimal Discounted = prod.Discount.ApplyDiscount(Taxed);
+        decimal Selective = prod.Discount.selectiveDiscount.ApplySelective(Discounted);
+        decimal Net = Selective.ReturnNotZero(Discounted, Taxed);  
         prod.Price(PriceState.Normal, price);
         prod.Price(PriceState.Taxed, Taxed);
         prod.Price(PriceState.Discounted, Discounted);
-        prod.Price(PriceState.Net, Discounted);
-
+        prod.Price(PriceState.Selective, Selective);    
+        prod.Price(PriceState.Net, Net);
     }
 
    #endregion

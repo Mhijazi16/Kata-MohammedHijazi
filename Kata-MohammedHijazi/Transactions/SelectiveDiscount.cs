@@ -12,5 +12,19 @@ public class SelectiveDiscount
    public decimal Ratio{ get => rate; set => rate = value.ValidateRatio(); }
    public decimal Amount { get => amount.SetPrecision() ; set => amount = rate * value; }
 
+   public SelectiveDiscount(int selectiveUpc, decimal ratio ,decimal price, int upc)
+   {
+      SelectiveUPC = selectiveUpc;
+      Ratio = ratio;
+      if (isActive(upc))
+          Amount = price; 
+   }   
 
+   public bool isActive(int upc) =>  isActiveated = upc == SelectiveUPC;
+   public decimal ApplySelective(decimal discountedPrice)
+   {
+       if(isActiveated)
+           return discountedPrice - Amount;
+       return 0; 
+   }
 }

@@ -23,13 +23,6 @@ public class Product
      
      #region Constructors
      
-     public Product()
-     {
-          Info = new ProductInfo("Unkown-Product", -1);
-          Tax = new Tax(Price(PriceState.Normal));
-          Discount = new Discount(Price(PriceState.Normal),0);
-          this.SetupPrices(1);
-    }
      public Product(ProductInfo info, Tax tax, Discount discount, decimal price,bool activatePrecedence)
      {
           Info = info;

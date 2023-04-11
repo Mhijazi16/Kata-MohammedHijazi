@@ -5,5 +5,6 @@ public enum PriceState
     Normal, 
     Taxed, 
     Discounted,
+    Selective,
     Net, 
 }

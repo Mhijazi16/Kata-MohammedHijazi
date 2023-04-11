@@ -31,12 +31,21 @@ public static class Report
 
          public static void ReportSelectiveDiscount(this Product product)
          {
-              Console.WriteLine("===============================================");   
+             Console.WriteLine("===============================================");   
              Console.WriteLine($"Tax = {product.Tax.Ratio * 100}%, universal discount = {product.Discount.Ratio * 100}%, UPC-discount = {product.Discount.selectiveDiscount.Ratio * 100}% for UPC={product.Discount.selectiveDiscount.SelectiveUPC}");
              Console.WriteLine($"Tax amount = ${product.Tax.Amount}, discount = ${product.Discount.Amount}, UPC discount = ${product.Discount.selectiveDiscount.Amount}");
              Console.WriteLine($"Final Net Price: {product.Price(PriceState.Net)}");
              Console.WriteLine($"Total Discount Amount: {product.Discount.Amount + product.Discount.selectiveDiscount.Amount}");
              Console.WriteLine("===============================================");
+         }
+
+         public static void ReportPrecedence(this Product product)
+         {
+              Console.WriteLine("===============================================");
+              Console.WriteLine($"Predecence Final Price: {product.Price(PriceState.Net)}");
+              Console.WriteLine($"Total Discount Amount: {product.Discount.Amount + product.Discount.selectiveDiscount.Amount}");
+              Console.WriteLine("===============================================");
+                      
          }
             
 }

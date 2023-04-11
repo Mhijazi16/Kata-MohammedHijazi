@@ -29,13 +29,16 @@ public class Product
           Tax = new Tax(Price(PriceState.Normal));
           Discount = new Discount(Price(PriceState.Normal),0);
           this.SetupPrices(1);
-     }
-     public Product(ProductInfo info, Tax tax, Discount discount, decimal price)
+    }
+     public Product(ProductInfo info, Tax tax, Discount discount, decimal price,bool activatePrecedence)
      {
           Info = info;
           Tax = tax;
           Discount = discount;
-          this.SetupPrices(price);
+          if(activatePrecedence)
+               this.SetupPricesWithPrecedence(price);
+          else
+               this.SetupPrices(price);
      }
      
      #endregion

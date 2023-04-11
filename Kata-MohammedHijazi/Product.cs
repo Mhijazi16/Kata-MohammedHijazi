@@ -30,27 +30,14 @@ public class Product
           Discount = new Discount(Price(PriceState.Normal),0);
           this.SetupPrices(1);
      }
-     public Product(ProductInfo info,decimal taxRatio,decimal discountRatio, decimal price)
-     {
-          this.Info = info;
-          this.Tax = new Tax(taxRatio);
-          this.Discount = new Discount(price,discountRatio);
-          this.SetupPrices(price);
-     }
-     public Product(ProductInfo info,decimal discountRatio, decimal price)
-     {
-           this.Info = info;
-           this.Tax = new Tax(price,0.2m);
-           this.Discount = new Discount(price, discountRatio);
-           this.SetupPrices(price);
-     }
-     public Product(ProductInfo info, Tax tax, Discount discount)
+     public Product(ProductInfo info, Tax tax, Discount discount, decimal price)
      {
           Info = info;
           Tax = tax;
           Discount = discount;
+          this.SetupPrices(price);
      }
-
+     
      #endregion
        
 }

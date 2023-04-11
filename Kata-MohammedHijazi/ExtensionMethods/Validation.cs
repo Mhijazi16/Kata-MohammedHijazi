@@ -8,7 +8,16 @@ public static class Validation
    public static bool IsPossitve(this decimal value) => value >= 0;
    public static bool IsLargerThan(this decimal value, decimal min) => value > min; 
    public static decimal SetPrecision(this decimal value) => Decimal.Round(value, 2);
-   public static bool isNotZero(this decimal value) => value != 0; 
+   public static bool isNotZero(this decimal value) => value != 0;
+
+   public static decimal ReturnNotZero(this decimal val1, decimal val2, decimal val3)
+   {
+      if (val1.isNotZero())
+         return val1;
+      if (val2.isNotZero())
+         return val2;
+      return val3;
+   }
 
    public static decimal ValidatePrice(this decimal price)
    {

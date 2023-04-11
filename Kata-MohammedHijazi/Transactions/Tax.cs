@@ -22,7 +22,7 @@ public class Tax
     public decimal Amount
     {
         get => amount;
-        set => amount = value * Ratio;
+        set => amount = (value * Ratio).SetPrecision();
     }
 
     #endregion

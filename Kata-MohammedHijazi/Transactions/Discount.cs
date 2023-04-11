@@ -9,6 +9,8 @@ public class Discount
       private decimal ratio;
       private decimal amount;
       public bool isApplied { get; set; } 
+      public SelectiveDiscount selectiveDiscount { get; set; }
+      
     #endregion
 
     #region Getters&Setters
@@ -21,25 +23,42 @@ public class Discount
       public decimal Amount
       {
           get => amount;
-          set => amount = value * Ratio;
+          set => amount = ComputeAmount(value, Ratio).SetPrecision();
       }
 
     #endregion
 
     #region Constructors
 
-    public Discount(decimal price, decimal ratio)
+    public Discount()
     {
-        Ratio = ratio;
-        Amount = price;
-        isApplied = ratio.isNotZero();
-    } 
+        Ratio = 0;
+        Amount = 0;
+        isApplied = false;
+    }
+    public Discount(decimal price, decimal ratio )
+         {
+             Ratio = ratio;
+             Amount = price;
+             isApplied = ratio.isNotZero();
+         }
+    public Discount(decimal price, decimal ratio, SelectiveDiscount s)
+     {
+         Ratio = ratio;
+         Amount = price;
+         isApplied = ratio.isNotZero();
+         selectiveDiscount = s; 
+     }   
 
     #endregion
 
     #region Methods
 
-    public decimal ApplyDiscount(decimal TaxedPrice) => TaxedPrice - Amount;    
+    public decimal ComputeAmount(decimal value, decimal ratio) => value * ratio; 
+    public decimal ApplyDiscount(decimal TaxedPrice)
+    {
+        return TaxedPrice - Amount;
+    }
 
     #endregion
 

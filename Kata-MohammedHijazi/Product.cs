@@ -1,5 +1,6 @@
 using Kata_MohammedHijazi.ExtensionMethods;
 using Kata_MohammedHijazi.Transactions;
+using Kata_MohammedHijazi.Transactions.Discount;
 
 namespace Kata_MohammedHijazi;
 
@@ -10,7 +11,7 @@ public class Product
      public ProductInfo Info { get; set; } 
      public Tax Tax { get; set; }
      public Discount Discount { get; set; }
-     private Dictionary<PriceState, decimal> Prices = new Dictionary<PriceState, decimal>();  
+     public Dictionary<PriceState, decimal> Prices { get; set; } = new Dictionary<PriceState, decimal>(); 
      
      #endregion
      

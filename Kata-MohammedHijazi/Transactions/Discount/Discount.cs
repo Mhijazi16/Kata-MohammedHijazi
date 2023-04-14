@@ -3,6 +3,7 @@ namespace Kata_MohammedHijazi.Transactions.Discount;
 
 public class Discount : ValueManipulator
 {
+    public static KeyValuePair<int, decimal> SelectiveUpc { get; set; } = new KeyValuePair<int, decimal>(); 
     public Discount()
     {
         Ratio = 0;
@@ -14,5 +15,4 @@ public class Discount : ValueManipulator
         Amount = price;
     }
     public decimal ComputeDiscountPrice(decimal price) => price - Amount;
-
 }

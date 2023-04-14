@@ -5,4 +5,5 @@ public enum ComputeState
     Additive,
     Multiplicative,
     Precedence,
+    Default,
 }

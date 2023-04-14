@@ -1,43 +1,42 @@
 
 using Kata_MohammedHijazi.ExtensionMethods;
+using Kata_MohammedHijazi.Transactions.Discount;
 
 namespace Kata_MohammedHijazi;
 
 public static class Report
 {
-         public static void ReportProductInfo(this Product p)
+         public static void ReportProductInfo(this Product product)
          {
-             decimal normal = p.Price(PriceState.Normal);
-             decimal taxed = p.Price(PriceState.Taxed);
-             decimal discounted = p.Price(PriceState.Discounted);
-             decimal net = p.Price(PriceState.Net);
+             decimal normal = product.Price(PriceState.Normal);
+             decimal net = product.Price(PriceState.Net);
              
               Console.WriteLine("==============================================");
-              Console.WriteLine($"Name: {p.Info.Name} , UPC: {p.Info.UPC} , Price: ${normal}");
-              Console.WriteLine($"Tax Amount: {p.Tax.Amount}, Discount Amount: ${p.Discount.Amount},");
-              Console.WriteLine($"Price Before Tax = ${normal}, After Tax : ${taxed}");
-              Console.WriteLine($"After Discount : ${discounted}, Net: ${net}"); 
+              Console.WriteLine($"Name: {product.Info.Name} , UPC: {product.Info.Upc} , Price: ${normal}");
+              Console.WriteLine($"Tax Amount: {product.Tax.Amount}, Discount Amount: ${product.Discount.Amount},");
+              Console.WriteLine($"Price Before Tax = ${normal}, After Tax : ${product.Tax.TaxedPrice}");
+              Console.WriteLine($"After Discount : ${product.Discount.DiscountedPrice}, Net: ${net}"); 
               Console.WriteLine("==============================================");
          }
 
-         public static void ReportDiscount(this Product Prod)
+         public static void ReportDiscount(this Product product)
          {
-             string replace = Prod.Discount.isApplied ? Prod.Discount.Amount + "" : "No Discount is Applied"; 
+             string replace = product.Discount.Ratio != 0 ? product.Discount.Amount + "" : "No Discount is Applied"; 
              
              Console.WriteLine("===============================================");
-             Console.WriteLine($"Tax Amount: ${Prod.Tax.Amount}, Discount Amount: ${replace}");
-             Console.WriteLine($"Original Price: ${Prod.Price(PriceState.Normal)}");
-             Console.WriteLine($"Final Net Price: ${Prod.Price(PriceState.Net)}");
+             Console.WriteLine($"Tax Amount: ${product.Tax.Amount}, Discount Amount: ${replace}");
+             Console.WriteLine($"Original Price: ${product.Price(PriceState.Normal)}");
+             Console.WriteLine($"Final Net Price: ${product.Price(PriceState.Net)}");
              Console.WriteLine("===============================================");
          }
 
          public static void ReportSelectiveDiscount(this Product product)
          {
              Console.WriteLine("===============================================");   
-             Console.WriteLine($"Tax = {product.Tax.Ratio * 100}%, universal discount = {product.Discount.Ratio * 100}%, UPC-discount = {product.Discount.selectiveDiscount.Ratio * 100}% for UPC={product.Discount.selectiveDiscount.SelectiveUPC}");
-             Console.WriteLine($"Tax amount = ${product.Tax.Amount}, discount = ${product.Discount.Amount}, UPC discount = ${product.Discount.selectiveDiscount.Amount}");
+             Console.WriteLine($"Tax = {product.Tax.Ratio * 100}%, universal discount = {product.Discount.Ratio * 100}%, UPC-discount = {Discount.SelectiveUpc.Value * 100}% for UPC={Discount.SelectiveUpc.Key}");
+             Console.WriteLine($"Tax amount = ${product.Tax.Amount}, discount = ${product.Discount.Amount},"); 
              Console.WriteLine($"Final Net Price: {product.Price(PriceState.Net)}");
-             Console.WriteLine($"Total Discount Amount: {product.Discount.Amount + product.Discount.selectiveDiscount.Amount}");
+             Console.WriteLine($"Total Discount Amount: {product.Discount.Amount}");
              Console.WriteLine("===============================================");
          }
 
@@ -45,7 +44,7 @@ public static class Report
          {
               Console.WriteLine("===============================================");
               Console.WriteLine($"Predecence Final Price: {product.Price(PriceState.Net)}");
-              Console.WriteLine($"Total Discount Amount: {product.Discount.Amount + product.Discount.selectiveDiscount.Amount}");
+              Console.WriteLine($"Total Discount Amount: {product.Discount.Amount}");
               Console.WriteLine("===============================================");
                       
          }
@@ -57,9 +56,18 @@ public static class Report
              Console.WriteLine("===============================================");
              Console.WriteLine($"Cost =${product.Price(PriceState.Normal)}, Tax =${product.Tax.Amount}, Discount =${product.Discount.Amount}");
              Console.WriteLine($"Packaging =${packageCost.SetPrecision()}, Transport =${product.Info.Expenses.Tranport}");
-             Console.WriteLine($"Total Discount Amount: {product.Discount.Amount + product.Discount.selectiveDiscount.Amount}");
+             Console.WriteLine($"Total Discount Amount: {product.Discount.Amount}");
              Console.WriteLine("===============================================");
                             
          }
-            
+
+         public static void GeneralReport(this Product product)
+         {
+             decimal package = product.Info.Expenses.ComputePackagingExpenses(product.Prices[PriceState.Normal]);
+             Console.WriteLine("===============================================");
+             Console.WriteLine($"Cost:${product.Prices[PriceState.Normal]}, Tax:${product.Tax.Amount},Discount:${product.Discount.Amount}");
+             Console.WriteLine($"Packaging:${package}, Transpor${product.Info.Expenses.Tranport}");
+             Console.WriteLine($"Total:${product.Prices[PriceState.Net]}");
+             Console.WriteLine("===============================================");
+         }    
 }

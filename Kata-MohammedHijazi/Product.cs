@@ -11,7 +11,7 @@ public class Product
      public ProductInfo Info { get; set; } 
      public Tax Tax { get; set; }
      public Discount Discount { get; set; }
-     public Dictionary<PriceState, decimal> Prices { get; set; } = new Dictionary<PriceState, decimal>(); 
+     public Dictionary<PriceState, decimal> Prices { get; set; } = new Dictionary<PriceState, decimal>();
      
      #endregion
      
@@ -24,15 +24,17 @@ public class Product
      
      #region Constructors
      
-     public Product(ProductInfo info, Tax tax, Discount discount, decimal price,bool activatePrecedence)
+     public Product(ProductInfo info, Tax tax, Discount discount, decimal price,ComputeState state)
      {
           Info = info;
           Tax = tax;
           Discount = discount;
-          if(activatePrecedence)
-               this.SetupPricesWithPrecedence(price);
-          else
-               this.SetupPrices(price);
+          if (state == ComputeState.Additive)
+               this.SetupAdditive();
+          else if (state == ComputeState.Multiplicative) 
+               this.SetupMultiplicative();
+          else if (state == ComputeState.Precedence) ;
+               this.SetupPrecedence();
      }
      
      #endregion

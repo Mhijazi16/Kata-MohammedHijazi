@@ -6,7 +6,7 @@ public class Expenses
 {
     private decimal PackagesRatio;
     private decimal transporting;
-    public decimal Total { get; set; }
+    public decimal Amount { get; set; }
     public decimal Packages
     {
         get => PackagesRatio;
@@ -18,11 +18,11 @@ public class Expenses
         set => transporting = value.SetPrecision();
     }
 
-    public Expenses(decimal packaging, decimal transporting)
+    public Expenses(decimal packaging, decimal transporting, decimal price)
     {
         Packages = packaging;
         Tranport = transporting;
-        Total = Packages + Tranport;
+        Amount = ComputePackagingExpenses(price) + Tranport;
     }
     public decimal ComputePackagingExpenses(decimal price) =>  (price * PackagesRatio);
 }

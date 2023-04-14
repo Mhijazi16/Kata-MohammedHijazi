@@ -1,4 +1,6 @@
 
+using Kata_MohammedHijazi.ExtensionMethods;
+
 namespace Kata_MohammedHijazi.Transactions;
 
 public class Tax : ValueManipulator

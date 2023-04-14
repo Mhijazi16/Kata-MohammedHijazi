@@ -1,4 +1,5 @@
 using System.Dynamic;
+using Kata_MohammedHijazi.Transactions.Discount;
 
 namespace Kata_MohammedHijazi.ExtensionMethods;
 
@@ -9,6 +10,7 @@ public static class Validation
    public static bool IsLargerThan(this decimal value, decimal min) => value > min; 
    public static decimal SetPrecision(this decimal value) => Decimal.Round(value, 2);
    public static bool isNotZero(this decimal value) => value != 0;
+   public static bool ValidateUpc(this int value) => Discount.SelectiveUpc.Key == value; 
 
    public static decimal ReturnNotZero(this decimal val1, decimal val2, decimal val3)
    {

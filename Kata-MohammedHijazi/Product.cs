@@ -29,12 +29,15 @@ public class Product
           Info = info;
           Tax = tax;
           Discount = discount;
+          
           if (state == ComputeState.Additive)
-               this.SetupAdditive();
+               this.SetupAdditive(price);
           else if (state == ComputeState.Multiplicative) 
-               this.SetupMultiplicative();
-          else if (state == ComputeState.Precedence) ;
-               this.SetupPrecedence();
+               this.SetupMultiplicative(price);
+          else if(state == ComputeState.Precedence)
+               this.SetupPrecedence(price);
+          else 
+               this.SetupDefault(price);
      }
      
      #endregion

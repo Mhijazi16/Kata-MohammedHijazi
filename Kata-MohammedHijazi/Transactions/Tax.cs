@@ -1,51 +1,24 @@
+
 using Kata_MohammedHijazi.ExtensionMethods;
 
 namespace Kata_MohammedHijazi.Transactions;
 
-public class Tax
+public class Tax : ValueManipulator
 {
-    #region Fields
-
-    private decimal ratio;
-    private decimal amount;
-
-    #endregion
-
-    #region Getters&Setters 
-
-    public decimal Ratio
-    {
-        get => ratio;
-        set => ratio = value.ValidateRatio();
-    }
-
-    public decimal Amount
-    {
-        get => amount;
-        set => amount = (value * Ratio).SetPrecision();
-    }
-
-    #endregion
-
-    #region Constructors
-
+    public decimal TaxedPrice { get; set; }
     public Tax(decimal price)
     {
         Ratio = 0.2m;
-        Amount = price; 
+        Amount = price * Ratio; 
+        TaxedPrice = ComputeTaxedPrice(price);
     }
-
     public Tax(decimal price, decimal ratio)
     {
         Ratio = ratio;
-        Amount = price; 
+        Amount = price * Ratio;
+        TaxedPrice = ComputeTaxedPrice(price); 
     }
 
-    #endregion
+    public decimal ComputeTaxedPrice(decimal price) => price + Amount;
 
-    #region Methods
-
-    public decimal ApplyTax(decimal price) => price + Amount;
-
-    #endregion
 }

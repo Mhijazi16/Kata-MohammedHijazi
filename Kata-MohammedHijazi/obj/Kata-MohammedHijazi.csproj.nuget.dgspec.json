@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/subliminal/Documents/C-Sharp/Kata-MohammedHijazi/Kata-MohammedHijazi/Kata-MohammedHijazi.csproj": {}
+    "/home/subliminal/Documents/FootHill/Kata-MohammedHijazi/Kata-MohammedHijazi/Kata-MohammedHijazi.csproj": {}
   },
   "projects": {
-    "/home/subliminal/Documents/C-Sharp/Kata-MohammedHijazi/Kata-MohammedHijazi/Kata-MohammedHijazi.csproj": {
+    "/home/subliminal/Documents/FootHill/Kata-MohammedHijazi/Kata-MohammedHijazi/Kata-MohammedHijazi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/subliminal/Documents/C-Sharp/Kata-MohammedHijazi/Kata-MohammedHijazi/Kata-MohammedHijazi.csproj",
+        "projectUniqueName": "/home/subliminal/Documents/FootHill/Kata-MohammedHijazi/Kata-MohammedHijazi/Kata-MohammedHijazi.csproj",
         "projectName": "Kata-MohammedHijazi",
-        "projectPath": "/home/subliminal/Documents/C-Sharp/Kata-MohammedHijazi/Kata-MohammedHijazi/Kata-MohammedHijazi.csproj",
+        "projectPath": "/home/subliminal/Documents/FootHill/Kata-MohammedHijazi/Kata-MohammedHijazi/Kata-MohammedHijazi.csproj",
         "packagesPath": "/home/subliminal/.nuget/packages/",
-        "outputPath": "/home/subliminal/Documents/C-Sharp/Kata-MohammedHijazi/Kata-MohammedHijazi/obj/",
+        "outputPath": "/home/subliminal/Documents/FootHill/Kata-MohammedHijazi/Kata-MohammedHijazi/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/subliminal/.nuget/NuGet/NuGet.Config"

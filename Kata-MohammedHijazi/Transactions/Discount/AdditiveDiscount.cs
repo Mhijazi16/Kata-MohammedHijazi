@@ -9,6 +9,7 @@ public class AdditiveDiscount : Discount
    {
       discount += upc.ValidateUpc() ? SelectiveUpc.Value : 0;  
       Ratio = discount;
-      Amount = Ratio * price; 
+      Amount = Ratio * price;
+      DiscountedPrice = ComputeDiscountPrice(price); 
    } 
 }

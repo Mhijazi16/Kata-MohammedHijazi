@@ -13,7 +13,7 @@ public class Discount : ValueManipulator
     public Discount(decimal price, decimal ratio )
     {
         Ratio = ratio;
-        Amount = price;
+        Amount = price * Ratio;
         DiscountedPrice = ComputeDiscountPrice(price);
     }
     public decimal ComputeDiscountPrice(decimal price) => price - Amount;

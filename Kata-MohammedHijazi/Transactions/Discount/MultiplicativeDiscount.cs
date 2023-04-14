@@ -14,6 +14,7 @@ public class Multiplicative : Discount
            Ratio = SelectiveUpc.Value;
            Amount = Amount + (price - Amount) * Ratio;
       }
-         
+      
+      DiscountedPrice = ComputeDiscountPrice(price);
    }
 }

@@ -6,13 +6,12 @@ public class Expenses
 {
     private decimal PackagesRatio;
     private decimal transporting;
-    
+    public decimal Total { get; set; }
     public decimal Packages
     {
         get => PackagesRatio;
         set => PackagesRatio = value.ValidateRatio();
     }
-
     public decimal Tranport
     {
         get => transporting;
@@ -23,8 +22,7 @@ public class Expenses
     {
         Packages = packaging;
         Tranport = transporting;
+        Total = Packages + Tranport;
     }
-
     public decimal ComputePackagingExpenses(decimal price) =>  (price * PackagesRatio);
-    public decimal ComputeExpenses(decimal price) => Tranport + ComputePackagingExpenses(price); 
 }

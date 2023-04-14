@@ -14,6 +14,6 @@ public class Tax : ValueManipulator
         Amount = price * Ratio; 
     }
 
-    public decimal ApplyTax(decimal price) => price + Amount;
+    public decimal ComputeTaxedPrice(decimal price) => price + Amount;
 
 }

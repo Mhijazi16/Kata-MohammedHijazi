@@ -9,7 +9,7 @@ public static class Validation
    public static bool InRange(this decimal value, decimal lower, decimal upper) => value >=lower && value <= upper;
    public static bool IsPossitve(this decimal value) => value >= 0;
    public static bool IsLargerThan(this decimal value, decimal min) => value > min; 
-   public static decimal SetPrecision(this decimal value) => Decimal.Round(value, 2);
+   public static decimal SetPrecision(this decimal value, int amount) => Decimal.Round(value, amount);
    public static bool IsPercentage(this decimal value) => value > 0 && value < 1;
 
    #endregion
@@ -18,7 +18,7 @@ public static class Validation
    {
       if (price.IsPossitve() == false)
          throw new ArgumentException("The Price Must Be Positive!!");
-      return price.SetPrecision(); 
+      return price.SetPrecision(4); 
    }
    public static decimal ValidateRatio(this decimal ratio)
    {
@@ -26,6 +26,6 @@ public static class Validation
          throw new ArgumentException("The Tax Must be Positive");
       if (ratio.IsLargerThan(1))
          ratio /= 100;
-      return ratio.SetPrecision(); 
+      return ratio.SetPrecision(4); 
    }
 }

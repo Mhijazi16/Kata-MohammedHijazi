@@ -8,8 +8,10 @@ public class AdditiveDiscount : Discount
    public AdditiveDiscount(decimal price, decimal discount, int upc)
    {
       discount += upc.ValidateUpc() ? SelectiveUpc.Value : 0;  
-      Ratio = discount;
-      Amount = Ratio * price;
-      DiscountedPrice = ComputeDiscountPrice(price); 
-   } 
+      
+      Ratio = Cap.CheckForCap(discount, true);
+      Amount = Cap.CheckForCap(price * Ratio, false); 
+      
+     DiscountedPrice = ComputeDiscountPrice(price); 
+   }
 }

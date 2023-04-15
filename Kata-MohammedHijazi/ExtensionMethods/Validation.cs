@@ -9,7 +9,7 @@ public static class Validation
    public static bool InRange(this decimal value, decimal lower, decimal upper) => value >=lower && value <= upper;
    public static bool IsPossitve(this decimal value) => value >= 0;
    public static bool IsLargerThan(this decimal value, decimal min) => value > min; 
-   public static decimal SetPrecision(this decimal value) => Decimal.Round(value, 2);
+   public static decimal SetPrecision(this decimal value) => Decimal.Round(value, 4);
    public static bool IsPercentage(this decimal value) => value > 0 && value < 1;
 
    #endregion

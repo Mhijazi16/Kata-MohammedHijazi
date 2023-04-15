@@ -1,4 +1,5 @@
 ﻿using Kata_MohammedHijazi.Enums;
+using Kata_MohammedHijazi.ExtensionMethods;
 using Kata_MohammedHijazi.Transactions;
 using Kata_MohammedHijazi.Transactions.Discount;
 
@@ -10,7 +11,7 @@ public class Program
         Discount.SelectiveUpc = new KeyValuePair<int, decimal>(123, 0.07m);
         Cap.Value = 0.3m; 
         
-        Report.currency = Currency.SEK; 
+        Report.currency = Currency.USD; 
         Product p1 = new Product(
             new ProductInfo("AA", 123, new Expenses(0.01m,2.2m,20.25m)),
             new Tax(20.25m, 21),

@@ -28,7 +28,6 @@ public static class PriceHandler
         product.Discount = new AdditiveDiscount(price, product.Discount.Ratio, product.Info.Upc);
         decimal net = product.ComputeNetPrice(price); 
         product.AssignPrices(new {normal = price, net = net});
-        Console.WriteLine(product.Discount.Amount);
     }
     public static void SetupMultiplicative(this Product product, decimal price)
     {

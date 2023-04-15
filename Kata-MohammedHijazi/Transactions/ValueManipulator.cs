@@ -16,6 +16,6 @@ public abstract class ValueManipulator
     public decimal Amount
     {
         get => _amount;
-        set => _amount = value.SetPrecision();
+        set => _amount = value.SetPrecision(4);
     }
 }

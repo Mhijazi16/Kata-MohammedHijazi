@@ -24,5 +24,5 @@ public class Expenses
         Tranport = transporting;
         Amount = ComputePackagingExpenses(price) + Tranport;
     }
-    public decimal ComputePackagingExpenses(decimal price) =>  (price * PackagesRatio);
+    public decimal ComputePackagingExpenses(decimal price) =>  (price * PackagesRatio).SetPrecision();
 }
